@@ -133,23 +133,65 @@
 //     // assert_eq!(Ok(s), Ok(truth));
 // }
 
-fn move_coords(x:(i32, i32)) -> (i32, i32)
-{
-    (x.0 + 1, x.1+1)
+// fn move_coords(x:(i32, i32)) -> (i32, i32)
+// {
+//     (x.0 + 1, x.1+1)
+// }
+
+// fn main() {
+//     let tuple: (&'static str, i32, char) = ("hello", 5, 'c');
+//     assert_eq!(tuple.0, "hello");
+//     assert_eq!(tuple.1, 5);
+//     assert_eq!(tuple.2, 'c');
+
+//     let coords = (0,1);
+//     let result = move_coords(coords);
+//     assert_eq!(result, (1,2));
+//     let (x, y) = move_coords(coords);
+//     assert_eq!(x, 1);
+//     assert_eq!(y, 2);
+
+// }
+
+#[derive(Debug, PartialEq)]
+struct People {
+    name: &'static str,
+    gender: u32,
 }
 
-fn main() {
-    let tuple: (&'static str, i32, char) = ("hello", 5, 'c');
-    assert_eq!(tuple.0, "hello");
-    assert_eq!(tuple.1, 5);
-    assert_eq!(tuple.2, 'c');
+impl People {
+    fn new(name: &'static str, gender: u32) -> Self {
+        return People {
+            name: name,
+            gender: gender,
+        };
+    }
+    fn name(&self) {
+        println!("name:{:?}", self.name);
+    }
 
-    let coords = (0,1);
-    let result = move_coords(coords);
-    assert_eq!(result, (1,2));
-    let (x, y) = move_coords(coords);
-    assert_eq!(x, 1);
-    assert_eq!(y, 2);
+    fn set_name(&mut self, name: &'static str) {
+        self.name = name;
+    }
 
+    fn gender(&self) {
+        let gender = if (self.gender == 1) { "boy" } else { "girl" };
+        println!("gender:{:?}", gender);
+    }
+}
+
+fn main()
+{
+    let alex = People::new("Alex", 1);
+    alex.name();
+    alex.gender();
+    assert_eq!(alex, People{name:"Alex", gender:1});
+    let mut alice = People::new("Alice", 0);
+    alice.name();
+    alice.gender();
+    assert_eq!(alice, People{name:"Alice", gender:0});
+    alice.set_name("Rose");
+    alice.name();
+    assert_eq!(alice, People{name:"Rose", gender:0});
 
 }
