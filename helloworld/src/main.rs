@@ -153,45 +153,194 @@
 
 // }
 
-#[derive(Debug, PartialEq)]
-struct People {
-    name: &'static str,
-    gender: u32,
-}
+// #[derive(Debug, PartialEq)]
+// struct People {
+//     name: &'static str,
+//     gender: u32,
+// }
 
-impl People {
-    fn new(name: &'static str, gender: u32) -> Self {
-        return People {
-            name: name,
-            gender: gender,
-        };
-    }
-    fn name(&self) {
-        println!("name:{:?}", self.name);
-    }
+// impl People {
+//     fn new(name: &'static str, gender: u32) -> Self {
+//         return People {
+//             name: name,
+//             gender: gender,
+//         };
+//     }
+//     fn name(&self) {
+//         println!("name:{:?}", self.name);
+//     }
 
-    fn set_name(&mut self, name: &'static str) {
-        self.name = name;
-    }
+//     fn set_name(&mut self, name: &'static str) {
+//         self.name = name;
+//     }
 
-    fn gender(&self) {
-        let gender = if (self.gender == 1) { "boy" } else { "girl" };
-        println!("gender:{:?}", gender);
-    }
-}
+//     fn gender(&self) {
+//         let gender = if (self.gender == 1) { "boy" } else { "girl" };
+//         println!("gender:{:?}", gender);
+//     }
+// }
 
+// fn main() {
+//     let alex = People::new("Alex", 1);
+//     alex.name();
+//     alex.gender();
+//     assert_eq!(
+//         alex,
+//         People {
+//             name: "Alex",
+//             gender: 1
+//         }
+//     );
+//     let mut alice = People::new("Alice", 0);
+//     alice.name();
+//     alice.gender();
+//     assert_eq!(
+//         alice,
+//         People {
+//             name: "Alice",
+//             gender: 0
+//         }
+//     );
+//     alice.set_name("Rose");
+//     alice.name();
+//     assert_eq!(
+//         alice,
+//         People {
+//             name: "Rose",
+//             gender: 0
+//         }
+//     );
+// }
+
+// struct Color(i32, i32, i32);
+// fn main() {
+//     let color = Color(0, 1, 2);
+//     assert_eq!(color.0, 0);
+//     assert_eq!(color.1, 1);
+//     assert_eq!(color.2, 2);
+// }
+
+// struct Integer(u32);
+// type Int = i32;
+// fn main() {
+//     let int = Integer(10);
+//     assert_eq!(int.0, 10);
+
+//     let int:Int = 10;
+//     assert_eq!(int, 10);
+// }
+
+// struct Empty;
+// fn main() {
+//     let x = Empty;
+//     println!("{:p}", &x);
+
+//     let y = x;
+//     println!("{:p}", &y);
+
+//     let z = Empty;
+//     println!("{:p}", &z);
+
+//     assert_eq!((..), std::ops::RangeFull);
+// }
+
+// enum Number {
+//     Zero,
+//     One,
+//     Two,
+// }
+
+// fn main()
+// {
+//     let a = Number::One;
+//     match a {
+//         Number::Zero => println!("0"),
+//         Number::One => println!("1"),
+//         Number::Two => println!("2"),
+//     }
+// }
+
+// enum Color {
+//     Red = 0xff0000,
+//     Green = 0x00ff00,
+//     Blue = 0x0000ff,
+// }
+
+// fn main() {
+//     println!("roses are #{:06x}", Color::Red as i32);
+// }
+
+// enum IpAddr {
+//     V4(u8, u8, u8, u8),
+//     V6(String),
+// }
+
+// fn main() {
+//     let x: fn(u8, u8, u8, u8) -> IpAddr = IpAddr::V4;
+//     let y: fn(String) -> IpAddr = IpAddr::V6;
+//     let home = IpAddr::V4(127, 0, 0, 1);
+// }
+
+// enum Option {
+//     Some(i32),
+//     None,
+// }
+
+// fn main() {
+//     let s = Some(42);
+//     let num = s.unwrap();
+//     match s {
+//         Some(n) => println!("num is :{}", n),
+//         None => (),
+//     }
+// }
+
+
+
+// fn main()
+// {
+//     let s:&Option<String> = &Some("Hello".to_string());
+//     match s {
+//         Some(ref s) => println!("s is :{}", s),
+//         _ => (),
+//     }
+// }
+
+
+// fn main()
+// {
+//     let mut v1 = vec![];
+//     v1.push(1);
+//     v1.push(2);
+//     v1.push(3);
+//     assert_eq!(v1, [1,2,3]);
+//     assert_eq!(v1[0], 1);
+//     assert_eq!(v1[1], 2);
+//     assert_eq!(v1[2], 3);
+
+//     let mut v2 = vec![0;10];
+//     let mut v3 = Vec::new();
+//     v3.push(4);
+//     v3.push(5);
+//     v3.push(6);
+//     // v3[4];
+
+// }
+
+
+
+use std::collections::VecDeque;
 fn main()
 {
-    let alex = People::new("Alex", 1);
-    alex.name();
-    alex.gender();
-    assert_eq!(alex, People{name:"Alex", gender:1});
-    let mut alice = People::new("Alice", 0);
-    alice.name();
-    alice.gender();
-    assert_eq!(alice, People{name:"Alice", gender:0});
-    alice.set_name("Rose");
-    alice.name();
-    assert_eq!(alice, People{name:"Rose", gender:0});
-
+    let mut buf: VecDeque<i32> = VecDeque::new();
+    buf.push_front(1);
+    buf.push_front(2);
+    assert_eq!(buf.get(0), Some(&2));
+    assert_eq!(buf.get(1), Some(&1));
+    buf.push_back(3);
+    buf.push_back(4);
+    buf.push_back(5);
+    assert_eq!(buf.get(2), Some(&3));
+    assert_eq!(buf.get(3), Some(&4));
+    assert_eq!(buf.get(4), Some(&5));
 }
