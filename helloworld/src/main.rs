@@ -295,8 +295,6 @@
 //     }
 // }
 
-
-
 // fn main()
 // {
 //     let s:&Option<String> = &Some("Hello".to_string());
@@ -305,7 +303,6 @@
 //         _ => (),
 //     }
 // }
-
 
 // fn main()
 // {
@@ -327,20 +324,177 @@
 
 // }
 
+// use std::collections::VecDeque;
+// fn main()
+// {
+//     let mut buf: VecDeque<i32> = VecDeque::new();
+//     buf.push_front(1);
+//     buf.push_front(2);
+//     assert_eq!(buf.get(0), Some(&2));
+//     assert_eq!(buf.get(1), Some(&1));
+//     buf.push_back(3);
+//     buf.push_back(4);
+//     buf.push_back(5);
+//     assert_eq!(buf.get(2), Some(&3));
+//     assert_eq!(buf.get(3), Some(&4));
+//     assert_eq!(buf.get(4), Some(&5));
+// }
 
+// use std::collections::LinkedList;
+// fn main() {
+//     let mut list1 = LinkedList::new();
+//     list1.push_back('a');
+//     let mut list2 = LinkedList::new();
+//     list2.push_back('b');
+//     list2.push_back('c');
+//     list1.append(&mut list2);
+//     println!("{:?}", list1);
+//     println!("{:?}", list2);
+//     list1.pop_front();
+//     println!("{:?}", list1);
+//     list1.push_front('e');
+//     println!("{:?}", list1);
+//     list2.push_front('f');
+//     list2.push_front('h');
+//     list2.push_front('h');
+//     println!("{:?}", list2);
 
-use std::collections::VecDeque;
-fn main()
-{
-    let mut buf: VecDeque<i32> = VecDeque::new();
-    buf.push_front(1);
-    buf.push_front(2);
-    assert_eq!(buf.get(0), Some(&2));
-    assert_eq!(buf.get(1), Some(&1));
-    buf.push_back(3);
-    buf.push_back(4);
-    buf.push_back(5);
-    assert_eq!(buf.get(2), Some(&3));
-    assert_eq!(buf.get(3), Some(&4));
-    assert_eq!(buf.get(4), Some(&5));
+// }
+
+// use std::collections::BTreeMap;
+// use std::collections::HashMap;
+// fn main() {
+//     let mut hmap = HashMap::new();
+//     let mut bmap = BTreeMap::new();
+//     hmap.insert(3, "c");
+//     hmap.insert(1, "a");
+//     hmap.insert(2, "b");
+//     hmap.insert(5, "e");
+//     hmap.insert(4, "f");
+//     bmap.insert(3, "c");
+//     bmap.insert(2, "b");
+//     bmap.insert(1, "a");
+//     bmap.insert(5, "e");
+//     bmap.insert(4, "d");
+//     println!("{:?}", hmap);
+//     println!("{:?}", bmap);
+// }
+
+// use std::collections::BTreeSet;
+// use std::collections::HashSet;
+
+// fn main() {
+//     let mut hbooks = HashSet::new();
+//     let mut bbooks = BTreeSet::new();
+//     hbooks.insert("A Song of Ice and Fire");
+//     hbooks.insert("The Emerald City");
+//     hbooks.insert("The Odyssey");
+//     if !hbooks.contains("The Emerald City") {
+//         println!(
+//             "We have {} books, but The Emerald City ain't one.",
+//             hbooks.len()
+//         );
+//     }
+//     println!("{:?}", hbooks);
+//     bbooks.insert("A Song of Ice and Fire");
+//     bbooks.insert("The Emerald City");
+//     bbooks.insert("The Odyssey");
+//     println!("{:?}", bbooks);
+// }
+
+// use std::collections::BinaryHeap;
+// fn main() {
+//     let mut heap = BinaryHeap::new();
+//     assert_eq!(heap.peek(), None);
+//     let arr = [93, 94, 99, 80, 89, 23, 1, 2, 3, 4, 5, 7, 76];
+//     for &i in arr.iter() {
+//         heap.push(i);
+//     }
+//     assert_eq!(heap.peek(), Some(&99));
+//     println!("{:?}", heap);
+// }
+
+// fn main() {
+//     #[derive(PartialEq)]
+//     #[derive(Debug)]
+//     struct Point {
+//         x: f64,
+//         y: f64,
+//     }
+//     let box_point = Box::new(Point { x: 0.0, y: 0.0 });
+//     let unboxed_point = *box_point;
+//     assert_eq!(unboxed_point, Point { x: 0.0, y: 0.0 });
+// }
+
+// std::option::Option;
+// enum Option<T> {
+//     Some(T),
+//     None,
+// }
+
+// use std::fmt::Debug;
+// fn match_option<T: Debug>(o: Option<T>) {
+//     match o {
+//         Some(i) => println!("{:?}", i),
+//         None => println!("nothing"),
+//     }
+// }
+// fn main() {
+//     let a:Option<i32> = Some(3);
+//     let b:Option<&str> = Some("hello");
+//     let c:Option<char> = Some('A');
+//     let d:Option<u32> = None;
+
+//     match_option(a);
+//     match_option(b);
+//     match_option(c);
+//     match_option(d);
+// }
+
+// struct Duck;
+// struct Pig;
+// trait Fly {
+//     fn fly(&self) -> bool;
+// }
+// impl Fly for Duck {
+//     fn fly(&self) -> bool {
+//         return true;
+//     }
+// }
+// impl Fly for Pig {
+//     fn fly(&self) -> bool {
+//         return false;
+//     }
+// }
+// fn fly_static<T: Fly>(s: T) -> bool {
+//     s.fly()
+// }
+// /// .
+// fn fly_dyn(s: &dyn Fly) -> bool {
+//     s.fly()
+// }
+// fn main() {
+//     let pig = Pig;
+//     assert_eq!(fly_static::<Pig>(pig), false);
+//     let duck = Duck;
+//     assert_eq!(fly_static::<Duck>(duck), true);
+//     assert_eq!(fly_dyn(&Duck), true);
+// }
+
+use std::fmt::*;
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+impl Debug for Point {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        write!(f, "Point {{ x: {}, y: {} }}", self.x, self.y)
+    }
+}
+
+fn main() {
+    let origin = Point { x: 10, y: 0 };
+    println!("The origin is :{:?}", origin);
 }
