@@ -1,4 +1,5 @@
 use std::io::stdin;
+use std::time::SystemTime;
 
 #[derive(Debug)]
 struct Rectangle{
@@ -126,6 +127,109 @@ fn test11(){
     println!("{}", a ^b);
 }
 
+fn test12(){
+    let en:char = 'R';
+    let zh:char = '中';
+    println!("{}\n{}", en, zh);
+}
+
+fn test13(){
+    let strig = String::from("Some thing");
+}
+
+fn test14(){
+    let mut string = String::from("");
+    string.push('A');
+    string.push_str("QWERYI:::");
+    println!("{}", string);
+    println!("len {}", String::from("Hello你好").len());
+}
+
+fn test15(){
+    let a = String::from("Hello你好");
+    let b = String::from("Hello你好");
+    let result = a.eq(&b);
+    println!("result {}", result);
+}
+
+fn test16(){
+    let a = String::from("Hello你好").eq("Hello你好");
+    let b = String::from("Hello你好").eq(String::from("Hello你好").as_str());
+    println!("a {}", a);
+    println!("b {}", b);
+}
+
+fn test17(){
+    let s:String = String::from("RUNOOB");
+    let ch:char = s.chars().nth(2).unwrap();
+    let sub:&str = &s[0..3];
+    println!("s {}",s);
+    println!("ch {}", ch);
+    println!("sub {}", sub);
+}
+
+fn test18(){
+    let s:&str = "RUNOOB";
+    println!("{} {} {} {}",
+        s.len(),
+        s.eq("RUNOOB"),
+        s.chars().nth(2).unwrap(),
+        &s[0..3]);
+}
+
+fn test19(){
+    let tup = (500,6.4,1);
+    let tup:(i32,f64,i32) = (500,6.4,1);
+}
+
+fn test20(){
+    let tup = (500,6.4, 1);
+    println!("tup.0 = {}", tup.0);
+    println!("tup.1 = {}", tup.1);
+    println!("tup.2 = {}", tup.2);
+
+    let (x,y,z) = tup;
+    println!("x = {}", x);
+    println!("y = {}", y);
+    println!("z = {}", z);
+}
+
+fn test21(){
+    let a = [1,2,3,4,5,];
+    let b = ["January", "February", "March"];
+    let c:[i32;5] = [1,2,3,4,5];
+    let d = [3;5];
+    println!("{:?}", a);
+    println!("{:?}", b);
+    println!("{:?}", c);
+    println!("{:?}", d);
+}
+
+fn test22(){
+    let a = [1,2,3,4,5];
+    let first = a[0];
+    let second = a[1];
+    println!("first:{}", first);
+    println!("second:{}", second);
+}
+//
+// fn test23(){
+//     let a = [1,2,3,4,5];
+//     a[0] = 0;
+// }
+
+fn test24(){
+    let mut a = [1,2,3,4,5];
+    a[0] = 0;
+    println!("{:?}", a);
+}
+
+fn test25(){
+    let array = [1,2,3,4,5];
+    let length = array.len();
+    println!("array:{:?}", array);
+    println!("array len:{}", length);
+}
 
 fn main() {
     // test3();
@@ -136,6 +240,19 @@ fn main() {
     // test8();
     // test9();
     // test10();
-    test11();
-
+    // test11();
+    // test12();
+    // test13();
+    // test14();
+    // test15();
+    // test16();
+    // test17();
+    // test18();
+    // test19();
+    // test20();
+    // test21();
+    // test22();
+    // test23();
+    // test24();
+    test25();
 }
