@@ -13,3 +13,5 @@ s-gu0jitpya2-b4whot.lock
 target
 helloworld/src/main.pdb
 helloworld/src/main.exe
+*.exe
+*.pdb
