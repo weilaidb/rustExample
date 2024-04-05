@@ -7,6 +7,17 @@ struct Rectangle{
 }
 
 
+fn readline_sum()
+{
+    let mut str_buf = String::new();
+    println!("please input sum's express, eg 1 2 3");
+    stdin().read_line(&mut str_buf).unwrap();
+    let sp:Vec<&str> = str_buf.as_str().split(" ").collect();
+    let a = sp[0].trim().parse::<i32>().unwrap();
+    let b = sp[1].trim().parse::<i32>().unwrap();
+    println!("{} + {} = {}", a, b, a+b);
+}
+
 fn main() {
     println!("Hello, world!");
     println!("what's your name ?");
@@ -26,8 +37,11 @@ fn main() {
     println!("rect1 is {:#?}", rect1);
 
     let mut str_buf = String::new();
+    println!("please input one line:");
     stdin().read_line(&mut str_buf).unwrap();
-    println!("Your input line is\n{}", str_buf);
+    println!("Your input line is {}", str_buf);
 
+
+    readline_sum();
 
 }
