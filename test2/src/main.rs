@@ -311,10 +311,88 @@ fn test32(){
     println!("{}", branch);
 }
 
+fn test33(){
+    let op = 1;
+
+    match op{
+        0 => {
+            println!("op = 0")
+        },
+        1|2|3|4|5 =>{
+          println!("op = 1 or 2 or 3 or 4 or 5")
+        },
+        _=>{
+            println!("op = Else number")
+        }
+    }
+
+
+}
+
+fn test34(){
+    let mut number = 1;
+
+    while number < 4 {
+        println!("{}", number);
+        number += 1;
+    }
+
+    println!("EXIT")
+}
+
+
+fn test35(){
+    let mut i = 0;
+    while  i < 10 {
+        println!("{}", i);
+        i+=1;
+    }
+}
+
+fn test36(){
+    for i in 0..5{
+        println!("{}", i)
+    }
+}
+
+fn test37(){
+    let a  = [10,20,30,40,50];
+    for i in a.iter(){
+        println!("{}", i);
+    }
+}
+
+fn test38(){
+    let a = [10,20,30,40,50];
+    for i in 0..a.len(){
+        println!("a[{}] = {}", i, a[i]);
+    }
+}
+
+fn test39(){
+    let s = ['R','U','N','O','O','B'];
+    let mut i =0;
+    loop {
+        let ch = s[i];
+        if ch == 'B'{
+            break;
+        }
+        print!("{}",ch);
+        i+=1;
+    }
+    println!();
+}
 
 fn main() {
     // test31();
-    test32();
+    // test32();
+    // test33();
+    // test34();
+    // test35();
+    // test36();
+    // test37();
+    // test38();
+    test39();
 
     //old！！！！
     //old！！！！
