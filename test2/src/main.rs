@@ -231,7 +231,95 @@ fn test25(){
     println!("array len:{}", length);
 }
 
+fn addition(a:i32, b:i32) ->i32{
+    return a + b;
+}
+
+fn addition2(a:i32, b:i32) -> i32{
+    a + b
+}
+
+fn test26(){
+    let sum = addition(100,23);
+    println!("{}", sum);
+    let sum = addition2(100,23);
+    println!("{}", sum);
+}
+
+fn test27(){
+    let x =4;
+    let y = {
+        let a = x * x *x;
+        let b = 2 * x * x;
+        a + b + 3
+    };
+    println!("y = {}", y);
+}
+
+fn function_one(){
+    println!("Function one is called.")
+}
+
+fn function_two(){
+    println!("Function two is called.")
+}
+
+fn test28(){
+    let mut fun:fn();
+    fun = function_one;
+    fun();
+
+    fun = function_two;
+    fun();
+}
+
+fn test29(){
+    let number = 3;
+    if number < 5 {
+        println!("{} < 5  true", number);
+    }else{
+        println!("{} < 5  false", number);
+    }
+}
+
+fn test30(){
+    let score = 100;
+    if score > 90 {
+        println!("优");
+    }else if score > 60 {
+        println!("及格");
+    }else { println!("不及格"); }
+}
+
+
+fn test31(){
+    let a = 3;
+    let number = if a > 0 {1} else {-1};
+    println!("number = {}",number);
+}
+
+fn test32(){
+    let score = 85;
+    let branch = if score > 90 {
+        "优"
+    }else if score > 80 {
+        "良"
+    }else if score > 70{
+        "中等"
+    }else { "差" };
+
+    println!("{}", branch);
+}
+
+
 fn main() {
+    // test31();
+    test32();
+
+    //old！！！！
+    //old！！！！
+    //old！！！！
+
     // test3();
     // test4();
     // test5();
@@ -254,5 +342,11 @@ fn main() {
     // test22();
     // test23();
     // test24();
-    test25();
+    // test25();
+    // test26();
+    // test27();
+    // test28();
+    // test29();
+    // test30();
+
 }
