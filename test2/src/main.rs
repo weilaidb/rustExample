@@ -383,6 +383,21 @@ fn test39(){
     println!();
 }
 
+fn test40(){
+    let s = ['R','O','O','U','N','B'];
+    let mut i = 0;
+    let location = loop {
+        let ch = s[i];
+        if ch =='O'{
+            break i;
+        }
+        i +=1;
+    };
+
+    println!("\'O\'的下标为{}", location);
+}
+
+
 fn main() {
     // test31();
     // test32();
@@ -392,7 +407,8 @@ fn main() {
     // test36();
     // test37();
     // test38();
-    test39();
+    // test39();
+    test40();
 
     //old！！！！
     //old！！！！
