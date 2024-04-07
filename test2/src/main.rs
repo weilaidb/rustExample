@@ -517,7 +517,50 @@ fn test50(){
     println!("a = {}, b = {}", a, b);
 }
 
+
+fn test51(){
+    let s:String = String::from("broadcast");
+
+    let part1:&str = &s[0..5];
+    let part2:&str = &s[5..9];
+    println!("{} = {} + {}", s, part1, part2);
+}
+
+fn test52(){
+    let string = String::from("RUNOOB");
+    let slice = string.as_str();
+}
+
+fn test53(){
+    let string = "0123456789";
+    let s1 = &string[1..4];
+    let s2:&str = &string[5..];
+    let s3:&str = &string[..4];
+    let s4:&str = &string[..];
+
+    println!("s1:{}", s1);
+    println!("s2:{}", s2);
+    println!("s3:{}", s3);
+    println!("s4:{}", s4);
+}
+
+fn test54(){
+    let arr:[i32;5] = [0,1,2,3,4];
+    let part:&[i32] = &arr[1..4];
+    for i in part.iter(){
+        println!("{}", i);
+    }
+}
+
 fn main() {
+    // test51();
+    // test52();
+    // test53();
+    test54();
+
+
+
+
     // test41();
     // test42();
     // test43();
@@ -526,7 +569,7 @@ fn main() {
     // test47();
     // test48();
     // test49();
-    test50();
+    // test50();
 
 
 
