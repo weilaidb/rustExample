@@ -397,8 +397,60 @@ fn test40(){
     println!("\'O\'的下标为{}", location);
 }
 
+fn test41(){
+    // let x = String::from("Some data");
+    // let y = x;
+    // println!("{}", x);
+}
+
+fn test42(){
+    let x = 1000000;
+    let y = x;
+    println!("{}", x);
+}
+
+fn test43(){
+    let s1 = String::from("Hello");
+    let s2 = &s1;
+    println!("s1 is \"{}\", s2 is \"{}\"", s1, s2);
+}
+
+// fn dangele() -> &String{
+//     let s = String::from("hello");
+//     &s
+// }
+//
+// fn test44(){
+//     let reference_to_nothing = dangle();
+// }
+
+fn test45(){
+    let s = String::from("hello");
+     take_ownership(s);
+     // take_ownership(s);
+
+    let x =5;
+
+    makes_copy(x);
+    makes_copy(x);
+}
+
+fn take_ownership(some_string:String){
+    println!("{}", some_string);
+}
+
+fn makes_copy(some_integer:i32){
+    println!("{}", some_integer);
+}
 
 fn main() {
+    // test41();
+    // test42();
+    // test43();
+    test45();
+
+
+
     // test31();
     // test32();
     // test33();
@@ -408,7 +460,7 @@ fn main() {
     // test37();
     // test38();
     // test39();
-    test40();
+    // test40();
 
     //old！！！！
     //old！！！！
