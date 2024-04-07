@@ -443,11 +443,90 @@ fn makes_copy(some_integer:i32){
     println!("{}", some_integer);
 }
 
+fn test46(){
+    let s = String::from("hello");
+    reference(&s);
+    println!("来自主函数：{}",s);
+}
+
+fn reference(some_thing:&String){
+    println!("来自子函数:{}", some_thing);
+}
+
+
+fn test47(){
+    let s1 = gives_ownership();
+    let s2 = String::from("hello");
+
+    let s3 = takes_and_gives_back(s2);
+
+}
+
+fn gives_ownership() -> String {
+    let some_string = String::from("hello");
+
+    return some_string;
+}
+
+fn takes_and_gives_back(a_string:String)->String{
+    return  a_string;
+}
+
+fn test48(){
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1);
+    println!("The length of '{}' is {}.", s1, len);
+}
+
+fn calculate_length(s:&String) -> usize{
+    s.len()
+}
+
+//error
+// fn test49(){
+//     let mut s1 = String::from("hello;");
+//     add_suffix(&s1);
+//     println!("{}", s1);
+// }
+
+//error
+// fn add_suffix(s:&String){
+//     s.push_str("SUFFIX");
+// }
+
+
+fn test49(){
+    let mut s1 = String::from("hello;");
+    add_suffix(&mut s1);
+    println!("{}", s1);
+}
+fn add_suffix(s:&mut String){
+    s.push_str("SUFFIX");
+}
+
+fn swap(a:&mut i32, b:&mut i32){
+    let t = *a;
+    *a = *b;
+    *b = t;
+}
+
+fn test50(){
+    let mut a = 0;
+    let mut b = 1;
+    swap(&mut a, &mut b);
+    println!("a = {}, b = {}", a, b);
+}
+
 fn main() {
     // test41();
     // test42();
     // test43();
-    test45();
+    // test45();
+    // test46();
+    // test47();
+    // test48();
+    // test49();
+    test50();
 
 
 
