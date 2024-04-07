@@ -552,11 +552,48 @@ fn test54(){
     }
 }
 
+struct Site{
+    domain:String,
+    name:String,
+    nation:String
+}
+
+fn test55(){
+    let runoob = Site{
+        domain:String::from("www.runoob.com"),
+        name:String::from("菜鸟教程"),
+        nation:String::from("中国")
+    };
+
+    let bing = Site{
+        domain:String::from("cn.bing.com"),
+        name:String::from("必应"),
+        ..runoob
+    };
+
+}
+
+fn test56(){
+    let domain = String::from("www.runoob.com");
+    let site = Site{
+        domain,
+        name:String::from("RUNOOB"),
+        nation:String::from("China")
+    };
+    // println!("{}", domain); //have removed
+}
+
+
+fn test57(){
+    
+}
 fn main() {
     // test51();
     // test52();
     // test53();
-    test54();
+    // test54();
+    // test55();
+    test56();
 
 
 
