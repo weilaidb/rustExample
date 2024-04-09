@@ -1015,6 +1015,40 @@ fn test78(){
         }
     }
 }
+
+fn test79(){
+    enum Option<T> {
+        None,
+        Some(T),
+    }
+
+    fn index_of(arr:&[i32], em:i32)->Option<usize>{
+        let mut i:usize = 0;
+        while i< arr.len() {
+            if arr[i] == em{
+                return Option::Some(i);
+            }
+            i += 1;
+        }
+        return Option::None;
+    }
+
+    let arr = [1,4,5,2,3];
+    let index = index_of(&arr, 3);
+    if let Option::Some(i) = index{
+        println!("找到了，下标是{}",i);
+    }else{
+        println!("元素没找到");
+    }
+
+
+    // let index2 = index_of(&arr, 3).unwrap();
+    // println!("{}",index);
+
+    // let index3 = index_of(&arr, 3).expect("没找到");
+    // println!("{}", index3);
+
+}
 fn main() {
     // test66();
     // test67();
@@ -1028,7 +1062,8 @@ fn main() {
     // test75();
     // test76();
     // test77();
-    test78();
+    // test78();
+    test79();
 
 
     // test51();
