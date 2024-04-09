@@ -1137,7 +1137,7 @@ fn test87() {
         center: (f64, f64),
     }
 
-    impl Comparable for Circle{
+    impl Comparable for Circle {
         fn greater(&self, b: &Self) -> bool {
             self.radius > b.radius
         }
@@ -1151,33 +1151,32 @@ fn test87() {
         }
     }
 
-    let c1 = Circle{
-        radius:10.0,
-        center:(0.0,0.0),
+    let c1 = Circle {
+        radius: 10.0,
+        center: (0.0, 0.0),
     };
 
-    let c2 =Circle{
-        radius:5.0,
-        center:(3.0,4.0),
+    let c2 = Circle {
+        radius: 5.0,
+        center: (3.0, 4.0),
     };
     println!("(c1 > c2) = {}", c1.greater(&c2));
     println!("(c1 < c2) = {}", c1.less(&c2));
     println!("(c1 == c2) = {}", c1.equals(&c2));
-
 }
 
-trait Printable{
+trait Printable {
     fn print(&self);
 
     //
-    fn println(&self){
+    fn println(&self) {
         self.print();
         println!(" [END]");
     }
 }
 
-struct Text{
-    content:String
+struct Text {
+    content: String,
 }
 
 impl Printable for Text {
@@ -1187,20 +1186,68 @@ impl Printable for Text {
 }
 
 
-fn test88(){
-    let text = Text{
-        content:String::from("This is a piece of text.")
+fn test88() {
+    let text = Text {
+        content: String::from("This is a piece of text.")
     };
 
     text.println();
 }
 
+fn test89() {
+    trait Comparable {
+        fn greater(&self, b: &Self) -> bool;
+        fn less(&self, b: &Self) -> bool;
+        fn equals(&self, b: &Self) -> bool;
+    }
 
+    fn select_sort(array: &mut [&impl Comparable]) {
+        for i in 0..array.len() {
+            let mut k = i;
+            for j in (i + 1)..array.len() {
+                if array[j].less(&array[k]) { k = j; }
+            }
+            if k != i {
+                let t = array[k];
+                array[k] = array[i];
+                array[i] = t;
+            }
+        }
+    }
+
+    impl Comparable for f64 {
+        fn greater(&self, b: &Self) -> bool {
+            *self > *b
+        }
+        fn less(&self, b: &Self) -> bool {
+            *self < *b
+        }
+        fn equals(&self, b: &Self) -> bool {
+            *self == *b
+        }
+    }
+
+    //原始f64数组
+    let fa = [1.9, 8.9, 10.3, 8.2, 7.8, 1.3];
+
+    //f46引用类型数组
+    let mut ra = [&fa[0], &fa[1], &fa[2], &fa[3], &fa[4], &fa[5]];
+    //调用排序算法
+    select_sort(&mut ra);
+
+    //输出排序算法
+    for f in ra{
+        println!("{}", f);
+    }
+
+
+}
 
 fn main() {
     // test86();
     // test87();
-    test88();
+    // test88();
+    test89();
 
     // test66();
     // test67();
