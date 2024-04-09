@@ -1,4 +1,7 @@
-use std::{fs::File, io::{self, stdin, Read}};
+use std::{fs, fs::File, io::{self, stdin, Read}};
+use std::fmt::Display;
+use std::fs::OpenOptions;
+use std::io::Write;
 #[warn(unused_imports)]
 use std::time::SystemTime;
 
@@ -1242,12 +1245,120 @@ fn test89() {
 
 
 }
+fn test90(){
+    trait Stringable{
+        fn stringify(&self) ->String;
+    }
+
+    trait Printable{
+        fn print(&self);
+    }
+
+    impl Stringable for i32 {
+        fn stringify(&self) -> String {
+            self.to_string()
+        }
+    }
+
+    impl Printable for i32{
+        fn print(&self) {
+            println!("-->{}", self);
+        }
+    }
+
+    fn print_by_two_ways(a:impl Stringable + Printable){
+        println!("a.stringify() = {}", a.stringify());
+        a.print();
+    }
+
+    let a:i32 = -123;
+    print_by_two_ways(a);
+
+}
+
+fn test91(){
+    let text = fs::read_to_string("hello.txt").unwrap();
+    println!("{}", text);
+}
+
+fn test92(){
+    let binary = fs::read("hello.txt").unwrap();
+
+    let text = String::from_utf8(binary).unwrap();
+    println!("{}", text);
+}
+
+fn test93(){
+    let mut file = File::open("hello.txt").unwrap();
+    let mut text = String::new();
+    file.read_to_string(&mut text);
+    println!("{}", text);
+}
+
+fn test94(){
+    let mut file = File::open("hello.txt").unwrap();
+    let mut binary = Vec::<u8>::new();
+    file.read_to_end(&mut binary).unwrap();
+    let text = String::from_utf8(binary).unwrap();
+    println!("{}", text);
+}
+
+fn test95(){
+    let mut file = File::open("hello.txt").unwrap();
+    let mut binary:[u8;5] = [0_u8;5];
+    file.read(&mut binary).unwrap();
+    let text = String::from_utf8(Vec::from(binary)).unwrap();
+    println!("{}",text);
+}
+
+fn test96(){
+    let mut file = File::open("hello.txt").unwrap();
+    let mut buffer = [0_u8];
+    let mut binary = Vec::<u8>::new();
+
+    loop{
+        let count = file.read(&mut buffer).unwrap();
+        if count == 0 {break;}
+        binary.push(buffer[0]);
+    }
+
+    let text = String::from_utf8(binary).unwrap();
+    println!("{}", text);
+}
+
+fn test97(){
+    let mut file = File::create("output.txt").unwrap();
+    file.write(b"This is a new file.").unwrap();
+}
+
+
+fn test98(){
+    let mut file = File::create("output.txt").unwrap();
+    file.write(b"Content has been overwritten.").unwrap();
+}
+
+fn test99(){
+    let mut file = OpenOptions::new()
+        .append(true)
+        .open("output.txt").unwrap();
+    file.write(b"\n[Suffix]").unwrap();
+}
 
 fn main() {
     // test86();
     // test87();
     // test88();
-    test89();
+    // test89();
+    // test90();
+    // test91();
+    // test92();
+    // test93();
+    // test94();
+    // test95();
+    // test96();
+    // test97();
+    // test98();
+    test99();
 
     // test66();
     // test67();
