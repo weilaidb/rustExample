@@ -1389,12 +1389,32 @@ fn test104(){
     fs::create_dir("./datax").unwrap();
 }
 
+fn test105(){
+    fs::create_dir_all("./data/1/2").unwrap();
+}
+
+fn test106(){
+    fs::create_dir_all("./data/1/2").unwrap();
+    fs::File::create("./data/1/2/test").unwrap();
+    fs::remove_file("./data/1/2/test").unwrap();
+    fs::remove_dir("./data/1/2/").unwrap();
+}
+
+fn test107(){
+    fs::create_dir_all("./data/1/2").unwrap();
+    fs::File::create("./data/1/2/test").unwrap();
+    fs::remove_dir_all("./data").unwrap();
+}
+
 fn main() {
     // test100();
     // test101();
     // test102();
     // test103();
-    test104();
+    // test104();
+    // test105();
+    // test106();//error
+    test107();
 
 
 
