@@ -2,6 +2,9 @@ use std::{fs::File, io::{self, stdin, Read}};
 #[warn(unused_imports)]
 use std::time::SystemTime;
 
+mod second_module;
+
+
 #[derive(Debug)]
 struct Rectangle{
     width:u32,
@@ -1052,7 +1055,12 @@ fn test79(){
 
 mod nation {
     pub mod government {
-        pub fn govern() {}
+        pub fn govern() {
+            println!("govern");
+        }
+    }
+    pub fn govern(){
+        println!("other govern");
     }
 
     mod congress {
@@ -1094,6 +1102,42 @@ fn test81(){
     // println!("我要点{}水果", meal.fruit);
 }
 
+mod a_module{
+    pub enum Person {
+        King{
+            name:String,
+        },
+        Queen
+    }
+}
+
+fn test82(){
+    let person = a_module::Person::King { name: String::from("Blue") };
+    if let a_module::Person::King { name } = person {
+        println!("Name is {}", name);
+    }
+}
+
+
+fn test83(){
+    use crate::nation::government::govern;
+    use crate::nation::govern as nation_govern;
+    govern();
+    nation_govern();
+}
+
+fn test84(){
+    use std::f64::consts::PI;
+    println!("{}", PI);
+}
+
+
+fn test85(){
+    second_module::testabc();
+    second_module::second_sub::testabc();
+}
+
+
 fn main() {
     // test66();
     // test67();
@@ -1110,7 +1154,11 @@ fn main() {
     // test78();
     // test79();
     // test80();
-    test81();
+    // test81();
+    // test82();
+    // test83();
+    // test84();
+    test85();
 
 
     // test51();
