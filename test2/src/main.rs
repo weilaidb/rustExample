@@ -759,10 +759,69 @@ fn test68(){
     println!("a的最后一个元素是 {}",get_last::<&str>(&a));
 }
 
+
+fn test69(){
+    #[derive(Debug)]
+    struct Point<T>{
+        x:T,
+        y:T,
+    }
+
+    let point = Point::<i32>{
+        x:1,
+        y:2,
+    };
+
+    let point2 = Point::<f64>{
+        x:1.0,
+        y:5.6,
+    };
+    println!("{:?}",point);
+    println!("{:?}",point2);
+
+    let p1 = Point{x:1,y:3};
+    let p2 = Point{x:1.0,y:3.0};
+    println!("{:?}",p1);
+    println!("{:?}",p2);
+}
+
+fn test70(){
+    #[derive(Debug)]
+    struct Point<T1,T2>{
+        x:T1,
+        y:T2,
+    }
+
+    let p = Point{x:1,y:2.0};
+    println!("{:?}",p);
+}
+
+fn test71(){
+    #[derive(Debug)]
+    enum Shape<T> {
+        Rectangle(T,T),
+        Cube(T,T,T)
+    }
+
+    let s1 = Shape::Rectangle(1,2);
+    let s2 = Shape::Cube(1.0, 2.0, 3.0);
+
+    let s3:Shape<i32> = Shape::Rectangle(1, 2);
+    let s4:Shape<f64> = Shape::<f64>::Cube(1.0, 2.0, 3.0);
+
+    println!("{:?}",s1);
+    println!("{:?}",s2);
+    println!("{:?}",s3);
+    println!("{:?}",s4);
+
+}
 fn main() {
     // test66();
     // test67();
-    test68();
+    // test68();
+    // test69();
+    // test70();
+    test71();
 
 
     // test51();
