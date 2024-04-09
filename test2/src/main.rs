@@ -1,7 +1,7 @@
 use std::{fs, fs::File, io::{self, stdin, Read}};
 use std::fmt::Display;
 use std::fs::OpenOptions;
-use std::io::Write;
+use std::io::{Seek, SeekFrom, Write};
 #[warn(unused_imports)]
 use std::time::SystemTime;
 
@@ -1344,7 +1344,54 @@ fn test99(){
     file.write(b"\n[Suffix]").unwrap();
 }
 
+fn test100(){
+    let mut file = OpenOptions::new()
+        .read(true)
+        .write(true)
+        .create(true)
+        .open("output.txt").unwrap();
+
+    file.write(b"ABCDEFG").unwrap();
+
+    file.seek(SeekFrom::Start(0)).unwrap();
+
+    let mut buffer = String::new();
+    file.read_to_string(&mut buffer).unwrap();
+    println!("{}", buffer);
+}
+
+fn test101(){
+    const PI:f64 = 3.141592653589793;
+
+    let mut file = File::create("PI.bin").unwrap();
+    file.write(&PI.to_ne_bytes()).unwrap();
+}
+
+fn test102(){
+    let mut file = File::open("PI.bin").unwrap();
+    let mut buffer = [0_u8;8];
+    file.read(&mut buffer).unwrap();
+
+    let data = f64::from_ne_bytes(buffer);
+    println!("{}",data);
+}
+
+fn test103(){
+    let dir = fs::read_dir("./").unwrap();
+    for item in dir{
+        let entry = item.unwrap();
+        println!("{}", entry.file_name().to_str().unwrap());
+    }
+}
+
 fn main() {
+    // test100();
+    // test101();
+    // test102();
+    test103();
+
+
+
     // test86();
     // test87();
     // test88();
@@ -1358,7 +1405,7 @@ fn main() {
     // test96();
     // test97();
     // test98();
-    test99();
+    // test99();
 
     // test66();
     // test67();
