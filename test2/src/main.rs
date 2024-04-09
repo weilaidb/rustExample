@@ -1,4 +1,5 @@
-use std::io::stdin;
+use std::{fs::File, io::{self, stdin, Read}};
+#[warn(unused_imports)]
 use std::time::SystemTime;
 
 #[derive(Debug)]
@@ -836,6 +837,184 @@ fn test72(){
     println!("point is ({}, {})", point.get_x(), point.get_y());
 }
 
+fn test73(){
+    #[derive(Debug)]
+    struct Data<A,B>{
+        x:A,
+        y:B
+    }
+
+    impl <A,B> Data<A,B> {
+        fn mix<C,D>(self, other: Data<C,D>) ->Data<A,D>{
+            Data{
+                x:self.x,
+                y:other.y,
+            }
+        }
+    }
+
+    let a = Data{
+        x:123.45,
+        y:"67890"
+    };
+    let b = Data{
+        x:9768,
+        y:String::from("53423")
+    };
+
+    println!("{:?}", a.mix(b));
+}
+
+
+fn test74(){
+    fn get_int()->usize{
+        10
+    }
+
+    let a = [1,2,3,4,5];
+    let i = get_int();
+    println!("{}", a[i]);
+    panic!("error occurred");
+    // println!(Hello,Rust); //不可达
+    
+}
+
+
+
+fn test75(){
+
+    enum Result<T,E>{
+        Ok(T),
+        Err(E),
+    }
+    
+    fn divide(a:f64,b:f64)->Result<f64, &'static str>{
+        if b != 0.0{
+            Result::Ok(a/b)
+        }else{
+            Result::Err("除以零")
+        }
+    }
+
+    fn sqrt(x:f64) -> Result<f64,&'static str>{
+        if x >=0.0{Result::Ok(x.sqrt())}
+        else{Result::Err("x小于0")}
+    }
+
+    fn is_prime(x:u32) -> Result<bool, &'static str>{
+        let result = sqrt(x as f64);
+        match result {
+            Result::Err(err)=>return Result::Err(err),
+            Result::Ok(rt)=>{
+                let t = (rt + 1.0).ceil() as u32;
+                for i in 2..t{
+                    if i == x {continue;}
+                    if x%i == 0 {return Result::Ok(false);}
+                }
+                return Result::Ok(true);
+            }
+        }
+    }
+    // fn is_prime2(x:u32) -> Result<bool, &'static str>{
+    //     let result = sqrt(x as f64)?;
+    //     let t = (result + 1.0).ceil() as u32;
+    //     for i in 2..t{
+    //         if i == x {continue;}
+    //         if x%i == 0 {return Result::Ok(false);}
+    //     }
+    //     return Result::Ok(1.0);
+    // }
+
+    let result = divide(1.0, 0.0);
+
+    match result {
+        Result::Ok(value) =>{
+            println!("结果正常:{}", value);
+        },
+        Result::Err(err) =>{
+            println!("出错了:{}", err);
+        }
+    }
+
+    // let result = divide(1.0, 0.0).unwrap();
+    // let result = divide(1.0, 0.0).expect("出错了!");
+    // println!("{}", result);
+}   
+
+
+fn test76(){
+    #[derive(Debug)]
+    enum Version { Version1, Version2 }
+    
+    fn parse_version(header: &[u8]) -> Result<Version, &'static str> {
+        match header.get(0) {
+            None => Err("invalid header length"),
+            Some(&1) => Ok(Version::Version1),
+            Some(&2) => Ok(Version::Version2),
+            Some(_) => Err("invalid version"),
+        }
+    }
+    
+    let version = parse_version(&[1, 2, 3, 4]);
+    match version {
+        Ok(v) => println!("working with version: {:?}", v),
+        Err(e) => println!("error parsing header: {:?}", e),
+    }
+}
+
+fn test77(){
+    // enum Result<T, E> {
+    //     Ok(T),
+    //     Err(E),
+    //  }
+
+    // let good_result: Result<i32, i32> = Ok(10);
+    // let bad_result: Result<i32, i32> = Err(10);
+    
+    // // The `is_ok` and `is_err` methods do what they say.
+    // assert!(good_result.is_ok() && !good_result.is_err());
+    // assert!(bad_result.is_err() && !bad_result.is_ok());
+    
+    // // `map` consumes the `Result` and produces another.
+    // let good_result: Result<i32, i32> = good_result.map(|i| i + 1);
+    // let bad_result: Result<i32, i32> = bad_result.map(|i| i - 1);
+    
+    // // Use `and_then` to continue the computation.
+    // let good_result: Result<bool, i32> = good_result.and_then(|i| Ok(i == 11));
+    
+    // // Use `or_else` to handle the error.
+    // let bad_result: Result<i32, i32> = bad_result.or_else(|i| Ok(i + 20));
+    
+    // // Consume the result and return the contents with `unwrap`.
+    // let final_awesome_result = good_result.unwrap();
+}
+
+fn read_text_from_file(path:&str)->Result<String, io::Error>{
+    let mut f = File::open(path)?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
+}
+
+fn test78(){
+    let str_file = read_text_from_file("hello.txt");
+    match str_file {
+        Result::Ok(s)=>println!("{}",s),
+        Result::Err(e)=>{
+            match e.kind(){
+                io::ErrorKind::NotFound =>{
+                    println!("没有这个文件");
+                },
+                io::ErrorKind::PermissionDenied =>{
+                    println!("权限不够");
+                },
+                _=>{
+                    println!("其他错误");
+                }
+            }
+        }
+    }
+}
 fn main() {
     // test66();
     // test67();
@@ -843,7 +1022,13 @@ fn main() {
     // test69();
     // test70();
     // test71();
-    test72();
+    // test72();
+    // test73();
+    // test74();
+    // test75();
+    // test76();
+    // test77();
+    test78();
 
 
     // test51();
