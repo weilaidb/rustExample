@@ -611,6 +611,22 @@ fn test58(){
     println!{"{}", rect1.wider(&rect2)};
 }
 
+
+fn test59(){
+    struct Color(u8,u8,u8);
+    struct Point(f64,f64);
+
+    let black = Color(2,7,110);
+    let origin = Point(3.0,5.0);
+
+    println!("black = ({},{},{})",black.0,black.1,black.2);
+    println!("origin = ({},{})",origin.0,origin.1);
+
+}
+fn test60(){
+
+}
+
 fn main() {
     // test51();
     // test52();
@@ -619,7 +635,8 @@ fn main() {
     // test55();
     // test56();
     // test57();
-    test58();
+    // test58();
+    test59();
 
 
 
