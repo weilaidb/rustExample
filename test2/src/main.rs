@@ -1384,11 +1384,17 @@ fn test103(){
     }
 }
 
+fn test104(){
+    fs::create_dir("./data").unwrap();
+    fs::create_dir("./datax").unwrap();
+}
+
 fn main() {
     // test100();
     // test101();
     // test102();
-    test103();
+    // test103();
+    test104();
 
 
 
