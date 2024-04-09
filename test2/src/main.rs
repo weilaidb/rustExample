@@ -1049,6 +1049,28 @@ fn test79(){
     // println!("{}", index3);
 
 }
+
+mod nation {
+    pub mod government {
+        pub fn govern() {}
+    }
+
+    mod congress {
+        pub fn legislate() {}
+    }
+
+    mod court {
+        fn judicial() {
+            super::congress::legislate();
+        }
+    }
+}
+
+
+fn test80(){
+    nation::government::govern();
+}
+
 fn main() {
     // test66();
     // test67();
@@ -1063,7 +1085,8 @@ fn main() {
     // test76();
     // test77();
     // test78();
-    test79();
+    // test79();
+    test80();
 
 
     // test51();
