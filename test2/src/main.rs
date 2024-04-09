@@ -661,7 +661,91 @@ println!{"{:?}", ebook};
 
 }
 
+fn test63(){
+    enum Book{
+        Papery{index:u32},
+        Electronic{url:String},
+    }
+    let book = Book::Papery{index:2000};
+
+    match book{
+        Book::Papery{index}=>{
+            println!("Papery book{}", index);
+        }
+        Book::Electronic{url} =>{
+            println!{"E-book {}", url};
+        }
+    }
+}
+
+fn test64(){
+    enum Book{
+        Papery{index:u32},
+        Electronic{url:String},
+    }
+
+    let book = Book::Electronic { url: String::from("https://runoob.com/rust") };
+    if let Book::Electronic { url } = book {
+        println!("URL is {}", url)
+    }
+
+
+}
+
+fn test65(){
+    enum Book{
+        Papery{index:u32},
+        Electronic{url:String},
+    }
+
+    let book = Book::Electronic { url: String::from("url") };
+
+    if let Book::Papery { index } = book {
+        println!("Papery {}", index);
+    }
+    else{
+        println!("Not papery book");
+    }
+}
+
+fn test66(){
+    #[derive(Debug)]
+    enum Signal {
+        Red,
+        Yellow,
+        Green,
+    }
+
+    impl Signal {
+        fn red(&mut self){
+            *self = Signal::Red;
+        }
+
+        fn yellow(&mut self){
+            *self = Signal::Yellow;
+        }
+
+        fn green(&mut self){
+            *self = Signal::Green;
+        }
+    }
+
+    let mut signal = Signal::Red;
+    println!("{:?}", signal);
+    signal.yellow();
+    println!("{:?}", signal);
+    signal.green();
+    println!("{:?}", signal);
+    signal.red();
+    println!("{:?}", signal);
+
+
+}
+
 fn main() {
+    test66();
+
+
     // test51();
     // test52();
     // test53();
@@ -673,7 +757,10 @@ fn main() {
     // test59();
     // test60();
     // test61();
-    test62();
+    // test62();
+    // test63();
+    // test64();
+    // test65();
 
 
 
