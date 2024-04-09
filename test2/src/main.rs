@@ -624,6 +624,40 @@ fn test59(){
 
 }
 fn test60(){
+    struct UnitStruct;
+}
+
+
+fn test61(){
+
+    #[derive(Debug)]
+    enum Color{
+        Red,
+        Green,
+        Blue
+    }
+let color = Color::Red;
+println!("{:?}", color);
+
+}
+
+fn test62(){
+    #[derive(Debug)]
+    enum Book{
+        Papery{
+            index:u32
+        },
+        Electronic{
+            url:String
+        },
+    }
+
+let book = Book::Papery{index:10001};
+let ebook = Book::Electronic{
+    url:String::from("https://runoob.com/rust")
+};
+println!{"{:?}", book};
+println!{"{:?}", ebook};
 
 }
 
@@ -636,7 +670,10 @@ fn main() {
     // test56();
     // test57();
     // test58();
-    test59();
+    // test59();
+    // test60();
+    // test61();
+    test62();
 
 
 
