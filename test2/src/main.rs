@@ -741,9 +741,28 @@ fn test66(){
 
 
 }
+fn get_lasti(array:&[i32]) ->i32{
+    array[array.len() - 1]
+}
+
+fn test67(){
+    let  a = [2,3,5,6,7,8];
+    println!("a的最后一个元素是{}", get_lasti(&a));
+}
+
+fn get_last<T>(array:&[T])->&T{
+    &array[array.len() - 1]
+}
+
+fn test68(){
+    let a = ["Ada","Bert","C","CPP"];
+    println!("a的最后一个元素是 {}",get_last::<&str>(&a));
+}
 
 fn main() {
-    test66();
+    // test66();
+    // test67();
+    test68();
 
 
     // test51();
