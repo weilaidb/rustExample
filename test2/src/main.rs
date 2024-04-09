@@ -583,17 +583,43 @@ fn test56(){
     // println!("{}", domain); //have removed
 }
 
+struct Rectangle2{
+    width:u32,
+    height:u32,
+}
+
+impl Rectangle2{
+    fn area(&self) ->u32{
+        self.width * self.height
+    }
+
+    fn wider(&self, rect:&Rectangle2) ->bool{
+        self.width > rect.width
+    }
+}
 
 fn test57(){
-    
+    let rect1 = Rectangle2{width:30,height:50};
+    println!{"rect1's area is {}", rect1.area()};
 }
+
+fn test58(){
+    let rect1 = Rectangle2{width:30,height:50};
+    let rect2 = Rectangle2{width:40,height:20};
+    println!{"rect1's area is {}", rect1.area()};
+    println!{"rect2's area is {}", rect2.area()};
+    println!{"{}", rect1.wider(&rect2)};
+}
+
 fn main() {
     // test51();
     // test52();
     // test53();
     // test54();
     // test55();
-    test56();
+    // test56();
+    // test57();
+    test58();
 
 
 
