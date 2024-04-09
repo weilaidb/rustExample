@@ -1071,6 +1071,29 @@ fn test80(){
     nation::government::govern();
 }
 
+mod house{
+    pub struct Breakfast{
+        pub toast:String,
+        fruit:String,
+    }
+
+    impl Breakfast {
+        pub fn summer(toast:&str)->Breakfast{
+            Breakfast{
+                toast:String::from(toast),
+                fruit:String::from("苹果"),
+            }
+        }
+    }
+}
+
+fn test81(){
+    let mut meal = house::Breakfast::summer("黑麦");
+    meal.toast = String::from("小麦");
+    println!("我要点{}吐司", meal.toast);
+    // println!("我要点{}水果", meal.fruit);
+}
+
 fn main() {
     // test66();
     // test67();
@@ -1086,7 +1109,8 @@ fn main() {
     // test77();
     // test78();
     // test79();
-    test80();
+    // test80();
+    test81();
 
 
     // test51();
