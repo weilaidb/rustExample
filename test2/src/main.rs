@@ -815,13 +815,35 @@ fn test71(){
     println!("{:?}",s4);
 
 }
+
+fn test72(){
+    struct Point<T>{
+        x:T,
+        y:T
+    }
+
+    impl <T> Point<T> {
+        fn get_x(&self)->&T{
+            &self.x
+        }
+
+        fn get_y(&self)->&T{
+            &self.y
+        }
+    }
+
+    let point = Point{x:3.0, y:4.0};
+    println!("point is ({}, {})", point.get_x(), point.get_y());
+}
+
 fn main() {
     // test66();
     // test67();
     // test68();
     // test69();
     // test70();
-    test71();
+    // test71();
+    test72();
 
 
     // test51();
